@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { InvestmentFormComponent } from './investment-form/investment-form.component';
+import type { investmentInput } from './investment-input.model';
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet, HeaderComponent, InvestmentFormComponent],
@@ -10,12 +11,7 @@ import { InvestmentFormComponent } from './investment-form/investment-form.compo
 })
 export class AppComponent {
   title = 'angular-investment-project';
-  calculateInvestmentResults(data: {
-    initialInvestment: number;
-    duration: number;
-    expectedReturn: number;
-    annualInvestment: number;
-  }) {
+  calculateInvestmentResults(data: investmentInput) {
     const { initialInvestment, duration, expectedReturn, annualInvestment } =
       data;
     const annualData = [];
