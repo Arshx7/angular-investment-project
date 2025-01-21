@@ -3,13 +3,34 @@ import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { InvestmentFormComponent } from './investment-form/investment-form.component';
 import type { investmentInput } from './investment-input.model';
+import { InvestmentResultComponent } from "./investment-result/investment-result.component";
+
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderComponent, InvestmentFormComponent],
+  imports: [ HeaderComponent, InvestmentFormComponent, InvestmentResultComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 export class AppComponent {
+  resultData!: {
+    year: number;
+    interest: number;
+    valueEndOfYear: number;
+    annualInvestment: number;
+    totalInterest: number;
+    totalAmountInvested: number;
+  }[];
+  /*
+  using Signal
+  resultData = signal<{
+    year: number;
+    interest: number;
+    valueEndOfYear: number;
+    annualInvestment: number;
+    totalInterest: number;
+    totalAmountInvested: number;
+  }[] | undefined>(undefined)
+   */
   title = 'angular-investment-project';
   calculateInvestmentResults(data: investmentInput) {
     const { initialInvestment, duration, expectedReturn, annualInvestment } =
@@ -33,7 +54,7 @@ export class AppComponent {
       });
     }
 
-    console.log(annualData);
-    
+    this.resultData=annualData
+    // this.resultData.set(annualData)
   }
 }
